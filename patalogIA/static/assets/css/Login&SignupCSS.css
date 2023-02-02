@@ -1,0 +1,52 @@
+    body {
+    text-align: center;
+}
+    #loginform {
+    display: inline-block;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	padding: 48px;
+	width:35%;
+	margin-top: 2rem;
+	background-color: #fff;
+	border-radius: 4px;
+	box-shadow: 4px 4px 7px lightgray;
+}
+.social-container {
+  margin: 20px 0;
+  display: block;
+}
+
+.social-container a {
+  border-radius: 50px;
+}
+@media screen and (min-width: 280px) {
+  #loginform {
+    width: 200px;
+    margin-top: 0;
+  }
+  .social-container {
+  margin: 10px 0;
+  display: block;
+}
+}
+
+@media screen and (min-width: 320px) {
+  #loginform {
+    width: 290px;
+    margin-top: 0;
+  }
+}
+@media screen and (min-width: 450px) {
+  #loginform {
+    width: 400px;
+    margin-top: 0;
+  }
+}
+@media screen and (min-width: 600px) {
+  #loginform {
+    width: 534px;
+    margin-top: 0;
+  }
+}
