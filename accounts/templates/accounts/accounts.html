@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <!-- Demarcate CSS -->
+     <!-- Login&SignupCSS CSS -->
     <link href="{% static 'assets/css/Login&SignupCSS.css' %}" rel="stylesheet">
     <title>Registration|Signup</title>
 </head>
@@ -20,29 +20,28 @@
 {% for field in signup %}
 {% for error in field.errors %}
 <div>
-  <strong> {{field.name}} {{ error|escape }}</strong>
+  <strong class="alert alert-danger"> {{field.name}} {{ error|escape }}</strong>
 </div>
 {% endfor %}
 {% endfor %}
 {% for error in form.non_field_errors %}
 <div>
-  <strong>{{ error.name }} {{ error|escape }}</strong>
+  <strong class="alert alert-danger">{{ error.name }} {{ error|escape }}</strong>
 </div>
 {% endfor %}
-{% endif %}
+{% endif %}<br>
 {% if messages %}
 <ul class="messages">
     {% for message in messages %}
-    <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    <li class="alert alert-danger">{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
     {% endfor %}
 </ul>
 {% endif %}
-    </div>
+    </div><br>
     <form class="php-email-form" method="POST" id="loginform">
        <h1>Sign Up with</h1>
                 <div class="social-container">
                     <a href="" target="_blank" class="btn btn-outline-dark"><i class="bi-github"></i></a>
-                    <a href="" target="_blank" class="btn btn-outline-primary"><i class="bi-facebook"></i></a>
                     <a href="" target="_blank" class="btn btn-outline-danger"><i class="bi-google"></i></a>
                 </div>
        <span>Or use your Email for registration</span>
@@ -58,7 +57,10 @@
         {% endif %}
       {% endfor %}
         <br><br><br>
-      <div class="text-center"><button name="btnSubmit" type="submit">Signup</button></div>
+      <div class="text-center">
+          Already have an account? <a style="margin-right:20px;" href="{% url 'registration:login' %}">Login here</a>
+          <button name="btnSubmit" type="submit">Signup</button>
+      </div>
     </form>
   </div>
 </section><!-- End Appointment Section -->

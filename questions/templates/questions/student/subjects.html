@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- subjects css CSS -->
+    <link href="{% static 'assets/css/subjectscss.css' %}" rel="stylesheet">
+    <title>Choose a subject</title>
+</head>
+<body>
+<section id="appointment" class="appointment section-bg">
+    <div class="container">
+    <div class="section-title">
+        <h2>Choose a subject</h2>
+    </div>
+  <div class="container" id="container2">
+      {% for subject in subjects %}
+  <div class="row">
+    <div class="col-sm">
+      <p>{{ subject }}</p>
+    </div>
+    <div class="col-sm">
+         <div class="float-end">
+        <a id="btn" href="" class="edit" data-toggle="tooltip" title="Add"><i class="bi-plus-circle"></i></a>
+         </div>
+    </div>
+  </div>
+      {% endfor %}
+</div>
+    </div>
+</section>
+<!-- End Appointment Section -->
+</body>
+</html>
+
+{% endblock content %}

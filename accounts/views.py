@@ -27,7 +27,7 @@ def loginUser(request):
                 #login(request, user)
                 print('superuser')
             elif not user.is_superuser:    
-                generalInfo = User.objects.get(email = userEmail)
+                generalInfo = User.objects.get(email=userEmail)
                 if str(generalInfo.usertype) == "Student":
                     print('Students')
                 elif str(generalInfo.usertype) == "Guest":

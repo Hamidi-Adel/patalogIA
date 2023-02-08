@@ -7,6 +7,13 @@ from django.views.decorators.csrf import csrf_exempt
 import math
 
 
+def subjects(request):
+    subjects = Questionnaire.objects.only('Subject')
+    context = {'subjects': subjects}
+    return render(request, 'questions/student/subjects.html', context)
+
+
+
 def question(request):
     form = QuestionTypeForm(request.POST or None)
     if form.is_valid():

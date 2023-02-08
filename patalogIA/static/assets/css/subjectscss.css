@@ -1,0 +1,35 @@
+p{
+  display: inline-block;
+  padding: 0.5em 0.2em 0.8em 0.5em;
+  border-radius:5px;
+  background:#118fe44f;
+  color:#118fe4;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  text-align:float-end;
+  font-weight: bold;
+}
+
+#container2{
+border:solid 1px;
+border-radius:5px;
+border-color:lightgrey;
+width:75%
+}
+
+#btn {
+  border-radius:5px;
+  margin-bottom: 15px;
+  margin-top: 20px;
+		font-weight: bold;
+		display: inline-block;
+		text-decoration: none;
+		outline: none !important;
+		color: #0744ff8a;
+	}
+	#btn:hover {
+		color: #cc1919;
+	}
+    #btn i {
+        font-size: 28px;
+    }
