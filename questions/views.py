@@ -7,6 +7,15 @@ from django.views.decorators.csrf import csrf_exempt
 import math
 
 
+def dashboard(request):
+    subjects = Questionnaire.objects.only('Subject')
+    context = {'subjects': subjects}
+    return render(request, 'questions/teacher/dashboard.html', context)
+
+
+
+
+
 def subjects(request):
     subjects = Questionnaire.objects.only('Subject')
     context = {'subjects': subjects}
@@ -31,7 +40,7 @@ def createDemarcate(request):
     """Process images uploaded by users"""
     form = createImageQuestion(request.POST or None)
     if request.method == "POST":
-        form = createImageQuestion(request.POST,request.FILES)
+        form = createImageQuestion(request.POST, request.FILES)
         instance = form.save(commit=False)
         x1 = int(request.POST.get("x1"))
         y1 = int(request.POST.get("y1"))
