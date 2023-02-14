@@ -1,0 +1,45 @@
+#btn1 {
+        border-radius:50px;
+        margin-bottom: 15px;
+		font-weight: bold;
+		display: inline-block;
+		text-decoration: none;
+		outline: none !important;
+		color: Red;
+	}
+#btn1 :hover {
+		color: #1977cc;
+	}
+#btn1 i {
+        font-size: 22px;
+    }
+#btn2 {
+        border-radius:50px;
+        margin-bottom: 15px;
+		font-weight: bold;
+		display: inline-block;
+		text-decoration: none;
+		outline: none !important;
+		color: #ffc107;
+	}
+#btn2 :hover {
+		color: #1977cc;
+	}
+#btn2 i {
+        font-size: 22px;
+    }
+    #btn3 {
+        border-radius:50px;
+        margin-bottom: 15px;
+		font-weight: bold;
+		display: inline-block;
+		text-decoration: none;
+		outline: none !important;
+		color:#1977cc;
+	}
+#btn3 :hover {
+		color: lightblue;
+	}
+#btn3 i {
+        font-size: 22px;
+    }
