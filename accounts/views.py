@@ -5,22 +5,19 @@ from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from .models import User
 
-
 def accounts(request):
     form = signupForm(request.POST or None)
     email_exist = User.objects.filter(email=request.POST.get('email')).exists()
+    username_exist = User.objects.filter(username=request.POST.get('username')).exists()
     if request.method == 'POST' and form.is_valid():
-        if not email_exist:
-            form.save()
-            return redirect("registration:loginPage")
-        else:
-            messages.error(request, "Email already exists!")
+        form.save()
     else:
         if request.POST.get('confirm_password') != request.POST.get('password'):
             messages.error(request, "Password Doesn't match")
-        else:
-            form.errors
-            messages.error(request, form.errors)
+        elif email_exist:
+            messages.error(request, "Email already exists!")
+        elif username_exist:
+            messages.error(request, "This username is already in use")    
     context = {'signup':form}
     return render(request, 'accounts/accounts.html', context)
 
