@@ -3,107 +3,126 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Demarcate question details CSS -->
-    <link href="{% static 'assets/css/DemarcatequestionsCSS.css' %}" rel="stylesheet">
+    <!-- <link href="{% static 'assets/css/DemarcatequestionsCSS.css' %}" rel="stylesheet"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <title>Document</title>
+    <title>Answer</title>
+    <style>
+        #canvas {
+            background: url('{{question.questionImage.url}}');       
+            cursor: crosshair;
+            border: 1px solid #000000;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center center;
+        }
+    </style>
 </head>
+
 <body>
     <section id="appointment" class="appointment section-bg">
-    <div class="container">
-            <div class="text-center">
-        <div class="section-title">
-        <h2>MCQs</h2>
-        </div>
-        <canvas style="background: url('{{question.questionImage.url}}');" id="canvas" width="800" height="500"></canvas>
-        <p>
-        <label for="id_questionImage">Question image:</label>
-        <!-- <input type="file" name="question_image" accept="image/*" id="id_question_image"> -->
-        <output id="list"></output></p>
-    <form action="" method="post" class="php-email-form" enctype="multipart/form-data" id="QuestionForm">
-            {% csrf_token %}
         <div class="container">
-  <div class="row justify-content-md-center">
-    <div class="col col-lg-8">
-    <div class="row align-items-center g-3 p-3">
-        <div class="col-3">
-            X1:<input class="form-control" type="text" name="x1" id="x1" value="0">
-        </div>
-        <div class="col-3">
-            Y1:<input class="form-control" type="text" name="y1" id="y1" value="0">
-        </div>
-        <div class="col-3">
-            X2:<input class="form-control" type="text" name="x2" id="x2" value="0">
-            </div>
-        <div class="col-3">
-            Y2:<input class="form-control" type="text" name="y2" id="y2" value="0">
-        </div>
-    </div>
-        </div>
-      </div>
-            </div>
-            <button type="submit" name="submitbtn">Submit</button>
-    </form>
-            </div>
-    <script>
-        // Creating the demarcation tool
+            <div class="text-center">
+                <div class="section-title">
+                    <h2>Select the Area</h2>
+                    <label for="id_questionImage">Question image:</label>
+                </div>
+                <canvas id="canvas" width="800" height="500"></canvas>
+                <p>
+                    <!-- <input type="file" name="question_image" accept="image/*" id="id_question_image"> -->
+                    <output id="list"></output>
+                </p>
+                <form action="" method="post" class="php-email-form" enctype="multipart/form-data" id="QuestionForm">
+                    {% csrf_token %}
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <div class="col col-lg-8">
+                                <div class="row align-items-center g-3 p-3">
 
-        //var canvas = document.getElementById("canvas"),ctx = canvas.getContext("2d");
+                                    <input class="form-control" type="text" name="x1" id="x1" value="0" hidden>
 
-        var canvas=document.getElementById('canvas'),ctx= canvas.getContext('2d');
+                                    <input class="form-control" type="text" name="y1" id="y1" value="0" hidden>
+                                    <input class="form-control" type="text" name="x2" id="x2" value="0" hidden>
+                                    <input class="form-control" type="text" name="y2" id="y2" value="0" hidden>
 
-        //Variables
-        var canvasx = $(canvas).offset().left;
-        var canvasy = $(canvas).offset().top;
-        var last_mousex = last_mousey = 0;
-        var mousex = mousey = 0;
-        var mousedown = false;
-        var x1 = 0, x2 = 0, y1 = 0, y2 = 0;
-        //Mousemove
-        $(canvas).on('mousemove', function (e) {
-            mousex = parseInt(e.clientX - canvasx);
-            mousey = parseInt(e.clientY - canvasy);
-            if (mousedown) {
-                ctx.clearRect(0, 0, canvas.width, canvas.height); //clear canvas
-                ctx.beginPath();
-                var width = mousex - last_mousex;
-                var height = mousey - last_mousey;
-                ctx.rect(last_mousex, last_mousey, width, height);
-                ctx.strokeStyle = 'blue';
-                ctx.lineWidth = 5;
-                ctx.stroke();
-            }
-            //Output
-            x2 = e.clientX;
-            y2 = e.clientY;
-        });
-        //Mousedown
-        $(canvas).on('mousedown', function (e) {
-            last_mousex = parseInt(e.clientX - canvasx);
-            last_mousey = parseInt(e.clientY - canvasy);
-            mousedown = true;
-            x1 = e.clientX;
-            y1 = e.clientY;
-        });
-        //Mouseup
-        $(canvas).on('mouseup', function (e) {
-            mousedown = false;
-            //for testing
-            document.getElementById("x1").value = x1;
-            document.getElementById("y1").value = y1;
-            document.getElementById("x2").value = x2;
-            document.getElementById("y2").value = y2;
-
-        });
-    </script>
-    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" name="submitbtn">Submit</button>
+                </form>
             </div>
+            <script>
+                // Creating the demarcation tool
+
+                function getCursorPosition(canvas, event) {
+                    const rect = canvas.getBoundingClientRect();
+                    const x = event.clientX - rect.left;
+                    const y = event.clientY - rect.top;
+                    return { x, y };
+                }
+
+                //Canvas
+                var canvas = document.getElementById('canvas');
+                var ctx = canvas.getContext('2d');
+                //Variables
+                var canvasx = $(canvas).offset().left;
+                var canvasy = $(canvas).offset().top;
+                var last_mousex = last_mousey = 0;
+                var mousex = mousey = 0;
+                var mousedown = false;
+
+                //Mousedown
+                $(canvas).on('mousedown', function (e) {
+                    var pos = getCursorPosition(canvas, e);
+                    last_mousex = pos.x;
+                    last_mousey = pos.y;
+                    mousedown = true;
+                    x1 = e.clientX;
+                    y1 = e.clientY;
+                });
+
+                //Mousemove
+                $(canvas).on('mousemove', function (e) {
+                    var pos = getCursorPosition(canvas, e);
+                    mousex = pos.x;
+                    mousey = pos.y;
+                    if (mousedown) {
+                        ctx.clearRect(0, 0, canvas.width, canvas.height); //clear canvas
+                        ctx.beginPath();
+                        var width = mousex - last_mousex;
+                        var height = mousey - last_mousey;
+                        ctx.rect(last_mousex, last_mousey, width, height);
+                        ctx.strokeStyle = 'white';
+                        ctx.lineWidth = 2;
+                        ctx.stroke();
+                    }
+                    //Output
+                    x2 = e.clientX;
+                    y2 = e.clientY;
+                });
+
+
+                //Mouseup
+                $(canvas).on('mouseup', function (e) {
+                    mousedown = false;
+                    //for testing
+                    document.getElementById("x1").value = x1;
+                    document.getElementById("y1").value = y1;
+                    document.getElementById("x2").value = x2;
+                    document.getElementById("y2").value = y2;
+                });
+            </script>
+        </div>
+        </div>
 
     </section>
 </body>
+
 </html>
 {% endblock content %}

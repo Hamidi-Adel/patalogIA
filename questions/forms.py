@@ -50,10 +50,10 @@ class CreateQuestionnaireForm(forms.ModelForm):
         fields = '__all__'
 
 
-class createImageQuestion(forms.Form):
+class createImageQuestion(forms.ModelForm):
     question = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Question'}), label='')
-    question_image = forms.CharField(widget=forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'question', 'name':"question_image", 'accept':"image/*", 'id':'id_questionImage'}), label='Question image:')
+    questionImage = forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'question', 'name':"question_image", 'id':'id_questionImage'})
     class Meta:
         model = demarcateQuestion 
         fields = '__all__'
-        exclude = ('x','y','w','h','area')
+        exclude = ('x','y','w','h','area','questionMarks')

@@ -39,12 +39,12 @@
 {% endif %}
     </div><br>
     <form class="php-email-form" method="POST" id="loginform">
-       <h1>Sign Up with</h1>
+       <!-- <h1>Sign Up with</h1>
                 <div class="social-container">
                     <a href="" target="_blank" class="btn btn-outline-dark"><i class="bi-github"></i></a>
                     <a href="" target="_blank" class="btn btn-outline-danger"><i class="bi-google"></i></a>
-                </div>
-       <span>Or use your Email for registration</span>
+                </div> -->
+       <span>Use your Email for registration</span>
         <hr>
       {% csrf_token %}
       <div class="row">
@@ -58,7 +58,7 @@
       {% endfor %}
         <br><br><br>
       <div class="text-center">
-          Already have an account? <a style="margin-right:20px;" href="{% url 'registration:login' %}">Login here</a>
+          Already have an account? <a style="margin-right:20px;" href="{% url 'registration:loginPage' %}">Login here</a>
           <button name="btnSubmit" type="submit">Signup</button>
       </div>
     </form>

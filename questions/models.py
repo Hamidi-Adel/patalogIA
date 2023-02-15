@@ -83,3 +83,20 @@ class Cases(models.Model):
         db_table = 'cases'
 
 
+class QuestionWiseResult(models.Model):
+    idQuestionResult = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+    questionLink = models.ForeignKey('demarcate.demarcateQuestion', on_delete=models.DO_NOTHING)
+    marksObtain = models.CharField(max_length=100, default= '0')
+
+
+class SubjectWiseResult(models.Model):
+    idResult = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+    subjectName = models.CharField(max_length=500, blank=True, null= True)
+    studentInfo = models.ForeignKey('accounts.User', on_delete=models.DO_NOTHING)
+    marksObtain = models.CharField(max_length=100, default= '0')
+
+class CompleteResult(models.Model):
+    idCompleteResult = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+    studentInfo = models.ForeignKey('accounts.User', on_delete=models.DO_NOTHING)
+    totalObtainedMarks = models.CharField(max_length=100, default= '0')
+

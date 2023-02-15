@@ -25,6 +25,8 @@ class demarcateQuestion(models.Model):
     area = models.IntegerField(blank=True, null=True)
     questionImage = models.ImageField(upload_to='question_images/', null=True, blank=True)
     question = models.CharField(max_length=500)
+    questionMarks = models.CharField(max_length=100, default='5.0')
+    
 
     def __str__(self):
         return self.question

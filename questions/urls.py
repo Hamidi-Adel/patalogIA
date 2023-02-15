@@ -12,5 +12,10 @@ urlpatterns = [
     path('quizdetail/<str:pk>', views.quizdetail, name='quizdetail'),
     path('demarcateQuiz', views.demarcateQuiz, name='demarcateQuiz'),
     path('demarcateQuizDetail/<str:pk>', views.demarcateQuizDetail, name = 'demarcateQuizDetail'),
-    path('subjects/', views.subjects, name = 'subjects')
+    path('subjects/', views.subjects, name = 'subjects'),
+    path('dashboard/', views.dashboard, name='dashboard'),
+
+    path('pass', views.congrats, name = 'congrats'),
+    path('fail', views.tryagain, name = 'tryagain'),
+
 ]

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Fichiers static JS/css datatables-->
+        <link href="{% static 'assets/css/DashboardCSS.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap5.min.js"></script>
+   <title>Dashboard</title>
+</head>
+<body>
+<section id="appointment" class="appointment section-bg">
+    <div class="container">
+    <div class="section-title">
+        <h2>Dashboard</h2>
+    </div>
+{% if user.is_authenticated %}
+{% if Type == 'Student' %}
+<div class="section-title">
+<h2>Students are not Allowed to view this page</h2>
+</div>
+{% else %}
+<table id="example" class="table table-hover table-bordered" style="color:#1977cc;font-size:small; text-align: Center; background:white">
+<thead class="thead" style="background: #1977cc;color: white;">
+<tr>
+<th style="text-align: center">Subjects</th>
+<th style="text-align: center">Marks</th>
+<th style="text-align: center">Total marks</th>
+<th style="text-align: center">Detailed report</th>
+</tr>
+</thead>
+<tbody id="myTable">
+{% for subject in subjects %}
+<tr>
+<th>{{ subject }}</th>
+<th><div class="float-start">{{ subject }}</div><div class="float-end"> <a id="btn1" href="" class="edit" data-toggle="tooltip" title="View marks"><i class="fa fa-eye"></i></a></div></th>
+<th><div class="float-start">{{ subject }}</div><div class="float-end"> <a id="btn2" href="" class="edit" data-toggle="tooltip" title="Total marks"><i class="fa fa-eye"></i></a></div></th>
+<th><a id="btn3" href="" class="edit" data-toggle="tooltip" title="View details"><i class="fa fa-folder-open"></i></a></th>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endif %}
+{% endif %}
+</div>
+</section>
+<!-- End Appointment Section -->
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+    $('#example').DataTable();
+});
+</script>
+{% endblock content %}
