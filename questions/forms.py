@@ -1,6 +1,6 @@
 from images.models import Image
 from video.models import Video
-from .models import QuestionTypes,Questions,Questionnaire
+from .models import QuestionTypes,Questions,Questionnaire, AlternativeQuestions
 from django import forms
 from demarcate.models import demarcateQuestion
 
@@ -26,27 +26,29 @@ class CreateQuestionsForm(forms.ModelForm):
         empty_label="Select questionnaireidquestionnaire"
     )
     questionnaireidquestionnaire.widget.attrs.update({'class': 'form-select', 'placeholder': 'Video Link'})
-    videoidvideo = forms.ModelChoiceField(
-        queryset=Video.objects.all(),
-        label="",
-        empty_label="Select videoidvideo"
-    )
-    videoidvideo.widget.attrs.update({'class': 'form-select', 'placeholder': 'Video Link'})
-    codimage = forms.ModelChoiceField(
-        queryset=Image.objects.all(),
-        label="",
-        empty_label="Select codimage"
-    )
-    codimage.widget.attrs.update({'class': 'form-select', 'placeholder': 'Video Link'})
     class Meta:
         model = Questions
         fields = '__all__'
-        exclude = ['typequestionandidtypequestion']
+        exclude = ['typequestionandidtypequestion','videoidvideo','codimage']
         
 
 class CreateQuestionnaireForm(forms.ModelForm):
     class Meta:
         model = Questionnaire
+        fields = '__all__'
+        exclude = ['videoidvideo','codimage']
+
+
+class CreateOptionsforAQuestion(forms.ModelForm):
+    
+    description = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Option Description (e.g. 14 Feb 2023)'}), label='')
+    letter = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Optiion Letter (e.g. A,B,C or D)'}), label='')
+    questoes_questoes_id = forms.ModelChoiceField(
+        queryset=Questions.objects.all(),
+        label="",
+        empty_label="Select A Question")
+    class Meta:
+        model = AlternativeQuestions
         fields = '__all__'
 
 

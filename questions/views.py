@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import QuestionTypeForm,CreateQuestionsForm, createImageQuestion
+from .forms import QuestionTypeForm,CreateQuestionsForm, createImageQuestion, CreateOptionsforAQuestion
 from .models import Questions, Questionnaire, AlternativeQuestions,QuestionWiseResult
 from demarcate.models import demarcateQuestion
 from django.http import HttpResponse
@@ -159,8 +159,18 @@ def MCQs(request):
 
     if form.is_valid():
         form.save()
+        return redirect('questions:createOptions')
     context = {'form':form, 'Type':str(userType.usertype)}
     return render(request, 'questions/teacher/MCQsPage.html', context)
+
+def createOptions(request):
+    form = CreateOptionsforAQuestion(request.POST or None)
+    userType = User.objects.get(iduser = request.user.iduser)
+    if form.is_valid():
+        form.save()
+    context = {'form':form, 'Type':str(userType.usertype)}
+    return render(request, 'questions/teacher/createoptions.html', context)
+
 
 def showQuestions(request):
     descQuesiton = Questions.objects.all()

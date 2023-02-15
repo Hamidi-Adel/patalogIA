@@ -20,6 +20,7 @@ def accounts(request):
             messages.error(request, "Password Doesn't match")
         else:
             form.errors
+            messages.error(request, form.errors)
     context = {'signup':form}
     return render(request, 'accounts/accounts.html', context)
 

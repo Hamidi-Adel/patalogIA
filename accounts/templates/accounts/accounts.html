@@ -33,11 +33,12 @@
 {% if messages %}
 <ul class="messages">
     {% for message in messages %}
-    <li class="alert alert-danger">{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    <li class="alert alert-danger">{{ message }}</li>
     {% endfor %}
 </ul>
 {% endif %}
-    </div><br>
+    </div>
+    <br>
     <form class="php-email-form" method="POST" id="loginform">
        <!-- <h1>Sign Up with</h1>
                 <div class="social-container">

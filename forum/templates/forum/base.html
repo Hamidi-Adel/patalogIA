@@ -13,6 +13,9 @@
         <!-- Custom css -->
         <link rel="stylesheet" type="text/css" href="{% static 'forumStatic/css/global.css' %}">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+        
+  <link href="{% static 'assets/img/favicon.ico' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
         <title>Forum</title>
     </head>
@@ -33,10 +36,10 @@
                         </div>
                 {% else %}
                     <div class="col-1 offset-5 text-right align-self-center">
-                        <a href="{% url 'registration:login' %}"><h3>log in</h3></a>
+                        <a href="{% url 'registration:loginPage' %}"><h3>log in</h3></a>
                     </div>
                     <div class="col-1 text-right align-self-center">
-                        <a href="{% url 'registration:signup' %}"><h3>register</h3></a>
+                        <a href="{% url 'registration:signupPage' %}"><h3>register</h3></a>
                     </div>
                 {% endif %}
             </div>
