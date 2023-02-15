@@ -1,94 +1,36 @@
 <!DOCTYPE html>
+{% extends 'homebase.html' %}
+{% block content %}
+{% load static %}
 <html lang="en">
 
-  <head>
-  {% load static %}
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="{% static 'assets/img/favicon.ico' %}" rel="icon">
-  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-    rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="{% static 'assets/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
-  <link href="{% static 'assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
-  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
-  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
-  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
-  <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
-  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="{% static 'assets/css/homestyle.css' %}" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Medilab - v4.9.1
-  * Template URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About us</title>
 </head>
 
 <body>
-
- <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center">
-
-      <h1 class="logo me-auto"><a href="index.html">Patalog IA</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-      <nav id="navbar" class="navbar order-last order-lg-0">
-        <ul>
-          <li><a class="nav-link scrollto" href="{% url 'home:StartPage' %}">Home</a></li>
-          <li><a class="nav-link scrollto" href="{% url 'registration:signupPage' %}">Registration</a></li>
-          <li><a class="nav-link scrollto" href="{% url 'home:aboutUs' %}">About Us</a></li>
-          <li><a class="nav-link scrollto" href="{% url 'questions:questiontype' %}">Questions Page</a></li>
-          <li><a class="nav-link scrollto" href="#">Studies</a></li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Prediction
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-             
-              <li><a class="dropdown-item" href="{% url 'predication:tuberculosePage' %}">Tuberculosis</a></li>
-            </ul>
-          </li>
-          <li><a class="nav-link scrollto" href="{% url 'forum:forum-index' %}">Forum</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-      <a href="{% url 'registration:loginPage' %}" class="appointment-btn scrollto"><span>Login</span></a>
-
-    </div>
-  </header><!-- End Header -->
-
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
+  <section id="appointment" class="appointment section-bg">
+    <div class="container">
   <main style="padding-left: 100px; padding-top: 100px;">
-    <h2>MEMBERS</h2>
-    <p>César Alexandre Silva Lima (PhD student and responsible for the research).</p>
-    <p>Silvia Cristina Martini (Advisor).</p>
-    <p>Márcia Aparecida Silva Bissaco (Professor at UMC).</p>
-    <p>Márcio Robortella Fernandes (Collaborator and Professor at UMC).</p>
+    <div class="section-title">
+      <h2>MEMBERS</h2>
+  </div>
+  <ul>
+    <li><h4>César Alexandre Silva Lima (PhD student and responsible for the research).</h4></li>
+    <li><h4>Silvia Cristina Martini (Advisor).</h4></li>
+    <li><h4>Márcia Aparecida Silva Bissaco (Professor at UMC).</h4></li>
+    <li><h4>Márcio Robortella Fernandes (Collaborator and Professor at UMC).</h4></li>
+  </ul>
   </main>
   <script src="{% static 'assets/js/main.js' %}"></script>
-
+    </div>
+  </section>
 </body>
-
 </html>
+<style>
+
+</style>
+{% endblock content %}
