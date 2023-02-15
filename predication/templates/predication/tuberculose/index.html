@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% block content %}
 {% load static %}
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <title>Análise de Imagens Médicas com IA</title>
@@ -19,7 +21,8 @@ html,body,h2,h3,h4,p,h5,li {font-family: Arial, sans-serif}
 
 <!--Cor de fundo-->
 <body class="bground-color">
-
+	<section id="appointment" class="appointment section-bg">
+        <div class="container">
 <!-- w3-content define um contêiner para conteúdo centrado em tamanho fixo e envolve todo o conteúdo da página. -->
 <div class="w3-content" style="max-width:960px">
 
@@ -101,7 +104,9 @@ text-color space-letters bottom-margin dont-break-out">
 	
 	
 </div> 
-
+</div>
+</section>
 </body>
 </html>
+{% endblock content %}
 
