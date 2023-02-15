@@ -22,13 +22,13 @@
             {% for field in signup %}
             {% for error in field.errors %}
             <div>
-                <strong> {{field.name}} {{ error|escape }}</strong>
+                <strong class="alert alert-danger"> {{field.name}} {{ error|escape }}</strong>
             </div>
             {% endfor %}
             {% endfor %}
             {% for error in form.non_field_errors %}
             <div>
-                <strong>{{ error.name }} {{ error|escape }}</strong>
+                <strong class="alert alert-danger">{{ error.name }} {{ error|escape }}</strong>
             </div>
             {% endfor %}
             {% endif %}
@@ -36,7 +36,7 @@
             {% if messages %}
             <ul class="messages">
                 {% for message in messages %}
-                <li>{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                <li class="alert alert-danger">{{ message }}</li>
                     {% endfor %}
             </ul>
             {% endif %}
