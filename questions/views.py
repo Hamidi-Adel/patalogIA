@@ -21,7 +21,7 @@ def subjects(request):
     subjects = Questionnaire.objects.only('Subject')
     userType = User.objects.get(iduser = request.user.iduser)
     context = {'subjects': subjects, 'Type':str(userType.usertype)}
-    return render(request, 'questions/student/subjects.html', context)
+    return render(request, 'questions/teacher/subjects.html', context)
 
 @login_required(login_url="/accounts/login/")
 def question(request):
@@ -173,7 +173,6 @@ def quizdetail(request, pk):
     rightAns = Questions.objects.get(description = pk)
     getQuestion = pk
     context = {'Question':getQuestion,'Options': getOptions}
-
     if request.method == "POST":
         selectedOptionA = request.POST.get('A')
         selectedOptionB = request.POST.get('B')
@@ -182,15 +181,27 @@ def quizdetail(request, pk):
 
         if selectedOptionA == rightAns.certain:
             print('A Your Answer is correct')
+            saveFinalMarks = QuestionWiseResult(questionLink = rightAns, marksObtain = "5.0")
+            saveFinalMarks.save()
             return HttpResponse('Your Answer is Correct')
         elif selectedOptionB == rightAns.certain:
             print('B Your Answer is correct')
+            saveFinalMarks = QuestionWiseResult(questionLink = rightAns, marksObtain = "5.0")
+            saveFinalMarks.save()
             return HttpResponse('Your Answer is Correct')
         elif selectedOptionC == rightAns.certain:
             print('C Your Answer is correct')
+            saveFinalMarks = QuestionWiseResult(questionLink = rightAns, marksObtain = "5.0")
+            saveFinalMarks.save()
             return HttpResponse('Your Answer is Correct')
         elif selectedOptionD == rightAns.certain:
             print('D Your Answer is correct')
+            saveFinalMarks = QuestionWiseResult(questionLink = rightAns, marksObtain = "5.0")
+            saveFinalMarks.save()
             return HttpResponse('Your Answer is Correct')
 
     return render(request, 'questions/student/questionwithoptions.html', context)
+
+def totalMarks(request, pk):
+    context = {'subjectname': pk}
+    return render(request, 'questions/teacher/totalMarks.html', context)

@@ -17,24 +17,22 @@
     <div class="section-title">
         <h2>Choose a subject</h2>
     </div>
-  <div class="container" id="container2">
-      {% for subject in subjects %}
-  <div class="row">
-    <div class="col-sm">
-      <p>{{ subject }}</p>
+<div class="container" id="container2">
+<div class="row">
+{% for subject in subjects %}
+    <div class="col-md-6">
+        <div class="box">
+        <p>{{ subject }}</p>
+        <div class="float-end">
+        <a id="btn" href="{% url 'questions:questiontype' %}" class="edit" data-toggle="tooltip" title="Add"><i class="bi-plus-circle"></i></a>
+        </div></div>
     </div>
-    <div class="col-sm">
-         <div class="float-end">
-        <a id="btn" href="" class="edit" data-toggle="tooltip" title="Add"><i class="bi-plus-circle"></i></a>
-         </div>
-    </div>
+{% endfor %}
   </div>
-      {% endfor %}
 </div>
     </div>
 </section>
 <!-- End Appointment Section -->
 </body>
 </html>
-
 {% endblock content %}

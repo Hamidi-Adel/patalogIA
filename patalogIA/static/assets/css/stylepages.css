@@ -525,7 +525,7 @@ section {
   color: #2c4964;
 }
 .list-group-item, .list-group {
-    border-radius: 2rem;   // or use your preferred border radius.
+    border-radius: 2rem;   /*or use your preferred border radius. */
     background: #1977cc;
 }
 .list-group-item-action:hover {
@@ -1859,17 +1859,17 @@ section {
     .btn-outline-primary:active,
     .btn-outline-primary:visited,
     .btn-outline-primary:focus {
-      background-color: #1977cc; !important;
-      border-color: White; !important;
+      background-color: #1977cc !important;
+      border-color: White !important;
     }
     .btn-outline-primary:not(hover),
     .btn-outline-primary:not(active),
     .btn-outline-primary:not(visited),
     .btn-outline-primary:not(focus) {
-      background-color: white; !important;
-      color: #2c4964; !important;
-      border-color: #1977cc; !important;
-      border-radius:50px
+      background-color: white !important;
+      color: #2c4964 !important;
+      border-color: #1977cc !important;
+      border-radius:50px;
     }
 
 

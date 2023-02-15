@@ -14,6 +14,7 @@ urlpatterns = [
     path('demarcateQuizDetail/<str:pk>', views.demarcateQuizDetail, name = 'demarcateQuizDetail'),
     path('subjects/', views.subjects, name = 'subjects'),
     path('dashboard/', views.dashboard, name='dashboard'),
+    path('marksheet/<str:pk>', views.totalMarks, name='marksheet'),
 
     path('pass', views.congrats, name = 'congrats'),
     path('fail', views.tryagain, name = 'tryagain'),

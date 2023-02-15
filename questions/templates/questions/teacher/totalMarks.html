@@ -14,13 +14,13 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap5.min.js"></script>
-   <title>Dashboard</title>
+   <title>{{subjectname}}</title>
 </head>
 <body>
 <section id="appointment" class="appointment section-bg">
     <div class="container">
     <div class="section-title">
-        <h2>Dashboard</h2>
+        <h2>{{subjectname}}</h2>
     </div>
 {% if user.is_authenticated %}
 {% if Type == 'Student' %}
@@ -43,7 +43,7 @@
 <th>{{ subject }}</th>
 <th><div class="float-start">{{ subject }}</div><div class="float-end"> <a id="btn1" href="" class="edit" data-toggle="tooltip" title="View marks"><i class="fa fa-eye"></i></a></div></th>
 <th><div class="float-start">{{ subject }}</div><div class="float-end"> <a id="btn2" href="" class="edit" data-toggle="tooltip" title="Total marks"><i class="fa fa-eye"></i></a></div></th>
-<th><a id="btn3" href="{% url 'questions:marksheet' subject %}" class="edit" data-toggle="tooltip" title="View details"><i class="fa fa-folder-open"></i></a></th>
+<th><a id="btn3" href="" class="edit" data-toggle="tooltip" title="View details"><i class="fa fa-folder-open"></i></a></th>
 </tr>
 {% endfor %}
 </tbody>
