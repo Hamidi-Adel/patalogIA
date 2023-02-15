@@ -16,20 +16,7 @@
       <h2>Signup Here</h2>
     </div>
     <div>
-      {% if signup.errors %}
-{% for field in signup %}
-{% for error in field.errors %}
-<div>
-  <strong class="alert alert-danger"> {{field.name}} {{ error|escape }}</strong>
-</div>
-{% endfor %}
-{% endfor %}
-{% for error in form.non_field_errors %}
-<div>
-  <strong class="alert alert-danger">{{ error.name }} {{ error|escape }}</strong>
-</div>
-{% endfor %}
-{% endif %}<br>
+      <br>
 {% if messages %}
 <ul class="messages">
     {% for message in messages %}
