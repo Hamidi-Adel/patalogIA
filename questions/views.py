@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import QuestionTypeForm,CreateQuestionsForm, createImageQuestion, CreateOptionsforAQuestion, createQuesitonsWithImage,createQuesitonsWithoutImage
-from .models import Questions, Questionnaire, AlternativeQuestions,QuestionWiseResult,questionsWithImages
+from .models import Questions, Questionnaire, AlternativeQuestions,QuestionWiseResult,questionsWithImages,questionsWithOutImages
 from demarcate.models import demarcateQuestion
 from django.http import HttpResponse
 import math
@@ -175,8 +175,10 @@ def createOptions(request):
 def showQuestions(request):
     # descQuesiton = Questions.objects.all()
     descQuestion = questionsWithImages.objects.all()
+    otherQuestion = questionsWithOutImages.objects.all()
+    AllQuestions = demarcateQuestion.objects.all()
     
-    context = {'QuestionText':descQuestion}
+    context = {'QuestionText':descQuestion,'otherQuestion':otherQuestion, 'AllQuestions':AllQuestions}
     return render(request, 'questions/student/quiz.html', context)
 
 def quizdetail(request, pk):
@@ -206,6 +208,35 @@ def quizdetail(request, pk):
             return redirect('questions:congrats')
 
     return render(request, 'questions/student/questionwithoptions.html', context)
+
+
+def withoutimagequizdetial(request, pk):
+    # getOptions = AlternativeQuestions.objects.filter(questoes_questoes_id__description = pk)
+    # rightAns = Questions.objects.get(description = pk)
+    # getQuestion = pk
+
+    questionAndOptions = questionsWithOutImages.objects.get(idQuestion = pk)
+    context = {'Question':questionAndOptions}
+    if request.method == "POST":
+        selectedOptionA = request.POST.get('A')
+        selectedOptionB = request.POST.get('B')
+        selectedOptionC = request.POST.get('C')
+        selectedOptionD = request.POST.get('D')
+
+        if selectedOptionA == questionAndOptions.rightAnswerOfQuestion:
+          
+            return redirect('questions:congrats')
+        elif selectedOptionB == questionAndOptions.rightAnswerOfQuestion:
+           
+            return redirect('questions:congrats')
+        elif selectedOptionC == questionAndOptions.rightAnswerOfQuestion:
+           
+            return redirect('questions:congrats')
+        elif selectedOptionD == questionAndOptions.rightAnswerOfQuestion:
+         
+            return redirect('questions:congrats')
+
+    return render(request, 'questions/student/withoutimgquizdetail.html', context)
 
 def totalMarks(request, pk):
     context = {'subjectname': pk}

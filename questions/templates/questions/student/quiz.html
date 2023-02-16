@@ -28,6 +28,23 @@
               </a>
             </ul>
             {% endfor %}
+
+            {% for Question in otherQuestion %}
+            <ul class="list-group mb-3">
+              <a style="text-align:center;margin: 10px 0;" href="{% url 'questions:withoutimagequizdetail' Question.idQuestion %}"
+                class="btn btn-outline-primary">
+                <h5 style="margin-top: 8px;">Question : {{Question.questionDescription}}</h5>
+              </a>
+            </ul>
+            {% endfor %}
+
+            {% for question in AllQuestions %}
+            <ul class="list-group mb-3">
+            <a style="margin: 10px 0;font-size:28px;text-align:center" href="{% url 'questions:demarcateQuizDetail' question.idmarks %}" class="btn btn-outline-primary">
+                {{question.question}}
+            </a>
+          </ul>
+              {% endfor %}
           </div>
         </div>
       </div>

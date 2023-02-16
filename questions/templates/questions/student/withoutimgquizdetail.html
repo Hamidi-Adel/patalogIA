@@ -24,7 +24,12 @@
             </div>
             <form action="" method="post" class="php-email-form">
                 {% csrf_token %}
-                
+                <div class="row mb-3">
+                    <div class="custom-choose mb-3">
+                    <img src="{{ Question.questionImage.url }}" alt="" style="width: 50%;" srcset="">
+                    </div>
+                </div>
+
                 <div class="row mb-3">
                     <div class="custom-choose mb-3">
                         <input type="radio" id="{{Question.quetionOptionADescription}}"
