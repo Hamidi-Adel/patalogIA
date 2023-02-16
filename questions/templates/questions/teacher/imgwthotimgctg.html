@@ -26,7 +26,16 @@
             {% else %}
             <form action="" class="php-email-form" method="post">
                 {% csrf_token %}
-                <select name="" id=""></select>
+                <select class="form-control" name="question_category" id="id_question_category">
+                    <option value="A">Questions with Image</option>
+                    <option value="B">Questions without Image</option>
+
+                </select>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
                 <div class="text-center">
                     <button type="submit" value="submit">Submit</button>
                 </div>

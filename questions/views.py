@@ -31,7 +31,7 @@ def question(request):
         if str(form.cleaned_data.get('category')) == 'Demarcate':
             return redirect('questions:demarcatePage')
         elif str(form.cleaned_data.get('category')) == 'Multiple Choice Questions':
-            return redirect('questions:MCQsPage')
+            return redirect('questions:questionscategory')
     context = {'form':form, 'Type':str(userType.usertype)}
     return render(request, 'questions/teacher/questionType.html', context)
 
@@ -230,3 +230,12 @@ def funwithoutImageQuestion(request):
         form = createQuesitonsWithoutImage(request.POST,request.FILES)
         form.save()
     return render(request, 'questions/teacher/withoutimageQuestion.html', context)
+
+def funshowimgwithoutimgcategory(request):
+    if request.method == 'POST':
+        if request.POST.get("question_category") == "A":
+            return redirect('questions:createImageQuestion')
+        
+        elif request.POST.get("question_category") == "B":
+            return redirect('questions:createwithoutImageQuestion')
+    return render(request, 'questions/teacher/imgwthotimgctg.html')
