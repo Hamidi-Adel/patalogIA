@@ -10,6 +10,9 @@ urlpatterns = [
     path('MCQs',views.MCQs, name='MCQsPage'),
     path('createoptins',views.createOptions, name='createOptions'),
 
+    path('imageQuestion', views.funImageQuestion, name='createImageQuestion'),
+    path('withoutimageQuestion', views.funwithoutImageQuestion, name='createwithoutImageQuestion'),
+
     path('quiz',views.showQuestions, name='quiz'),
     path('quizdetail/<str:pk>', views.quizdetail, name='quizdetail'),
     path('demarcateQuiz', views.demarcateQuiz, name='demarcateQuiz'),

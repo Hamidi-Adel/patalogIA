@@ -1,6 +1,6 @@
 from images.models import Image
 from video.models import Video
-from .models import QuestionTypes,Questions,Questionnaire, AlternativeQuestions
+from .models import QuestionTypes,Questions,Questionnaire, AlternativeQuestions,questionsWithImages,questionsWithOutImages
 from django import forms
 from demarcate.models import demarcateQuestion
 
@@ -59,3 +59,36 @@ class createImageQuestion(forms.ModelForm):
         model = demarcateQuestion 
         fields = '__all__'
         exclude = ('x','y','w','h','area','questionMarks')
+
+
+class createQuesitonsWithImage(forms.ModelForm):
+    questionImage = forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Select the Image for Question', 'name':"questionImage", 'id':'id_questionImage'})
+    questionDescription = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Question Description (e.g. What this image shows?)'}), label='')
+    questionOptionA = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Option Name (e.g. A)'}), label='')
+    quetionOptionADescription = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Possible right answer (e.g. Tumor)'}), label='')
+    questionOptionB = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Option Name (e.g. B)'}), label='')
+    quetionOptionBDescription = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Possible right answer (e.g. Tumor)'}), label='')
+    questionOptionC = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Option Name (e.g. C)'}), label='')
+    quetionOptionCDescription = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Possible right answer (e.g. Tumor)'}), label='')
+    questionOptionD = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Option Name (e.g. D)'}), label='')
+    quetionOptionDDescription = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Possible right answer (e.g. Tumor)'}), label='')
+    rightAnswerOfQuestion = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Right answer (e.g. B)'}), label='')
+    class Meta:
+        model = questionsWithImages
+        fields = '__all__'
+
+class createQuesitonsWithoutImage(forms.ModelForm):
+   
+    questionDescription = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Question Description (e.g. What is the Oficial Name of COVID-19?)'}), label='')
+    questionOptionA = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Option Name (e.g. A)'}), label='')
+    quetionOptionADescription = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Possible right answer (e.g. Tumor)'}), label='')
+    questionOptionB = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Option Name (e.g. B)'}), label='')
+    quetionOptionBDescription = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Possible right answer (e.g. Tumor)'}), label='')
+    questionOptionC = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Option Name (e.g. C)'}), label='')
+    quetionOptionCDescription = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Possible right answer (e.g. Tumor)'}), label='')
+    questionOptionD = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Option Name (e.g. D)'}), label='')
+    quetionOptionDDescription = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Possible right answer (e.g. Tumor)'}), label='')
+    rightAnswerOfQuestion = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Right answer (e.g. B)'}), label='')
+    class Meta:
+        model = questionsWithOutImages
+        fields = '__all__'

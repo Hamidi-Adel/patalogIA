@@ -100,3 +100,35 @@ class CompleteResult(models.Model):
     studentInfo = models.ForeignKey('accounts.User', on_delete=models.DO_NOTHING)
     totalObtainedMarks = models.CharField(max_length=100, default= '0')
 
+
+
+class questionsWithImages(models.Model):
+    idQuestion = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+    questionImage = models.ImageField(upload_to='question_images/', null=True, blank=True)
+    questionDescription = models.CharField(max_length=1000, null=True, blank=True)
+    questionOptionA = models.CharField(max_length=2, null=True, blank=True)
+    quetionOptionADescription = models.CharField(max_length=500, null=True, blank=True)
+    questionOptionB = models.CharField(max_length=2, null=True, blank=True)
+    quetionOptionBDescription = models.CharField(max_length=500, null=True, blank=True)
+    questionOptionC = models.CharField(max_length=2, null=True, blank=True)
+    quetionOptionCDescription = models.CharField(max_length=500, null=True, blank=True)
+    questionOptionD = models.CharField(max_length=2, null=True, blank=True)
+    quetionOptionDDescription = models.CharField(max_length=500, null=True, blank=True)
+    rightAnswerOfQuestion = models.CharField(max_length=2, null=True, blank=True, default="A")
+    def __str__(self):
+        return self.questionDescription
+
+class questionsWithOutImages(models.Model):
+    idQuestion = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+    questionDescription = models.CharField(max_length=1000, null=True, blank=True)
+    questionOptionA = models.CharField(max_length=2, null=True, blank=True)
+    quetionOptionADescription = models.CharField(max_length=500, null=True, blank=True)
+    questionOptionB = models.CharField(max_length=2, null=True, blank=True)
+    quetionOptionBDescription = models.CharField(max_length=500, null=True, blank=True)
+    questionOptionC = models.CharField(max_length=2, null=True, blank=True)
+    quetionOptionCDescription = models.CharField(max_length=500, null=True, blank=True)
+    questionOptionD = models.CharField(max_length=2, null=True, blank=True)
+    quetionOptionDDescription = models.CharField(max_length=500, null=True, blank=True)
+    rightAnswerOfQuestion = models.CharField(max_length=2, null=True, blank=True, default="A")
+    def __str__(self):
+        return self.questionDescription

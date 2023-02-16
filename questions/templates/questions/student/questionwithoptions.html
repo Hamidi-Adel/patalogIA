@@ -3,6 +3,7 @@
 {% block content %}
 {% load static %}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,33 +11,63 @@
     <!-- RadioInputs CSS -->
     <link href="{% static 'assets/css/radiobuttonsCSS.css' %}" rel="stylesheet">
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
     <title>Question With Detial</title>
 </head>
-<body>
-<section id="appointment" class="appointment section-bg">
-    <div class="container">
-    <div class="section-title">
-        <h2>{{Question}}</h2>
-        </div>
-    <form action="" method="post" class="php-email-form">
-        {% csrf_token %}
-        {% for option in Options %}
-    <div class="row mb-3">
-    <div class="custom-choose mb-3">
-     <input type="radio" id="{{option.letter}}" value="{{option.letter}}" name="option">
-     <label for="{{option.letter}}">{{option}}</label>
-    </div>
-    </div>
-        {% endfor %}
-        <div class="text-center">
-<button class="appointment-btn" type="submit" value="Save">Submit</button>
-        </div>
-</form>
 
-  </div>
-</section>
+<body>
+    <section id="appointment" class="appointment ">
+        <div class="container">
+            <div class="section-title">
+                <h2>{{Question}}</h2>
+            </div>
+            <form action="" method="post" class="php-email-form">
+                {% csrf_token %}
+                <div class="row mb-3">
+                    <div class="custom-choose mb-3">
+                    <img src="{{ Question.questionImage.url }}" alt="" style="width: 50%;" srcset="">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="custom-choose mb-3">
+                        <input type="radio" id="{{Question.quetionOptionADescription}}"
+                            value="{{Question.questionOptionA}}" name="A">
+                        <label for="{{Question.quetionOptionADescription}}">{{Question.quetionOptionADescription}}</label>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="custom-choose mb-3">
+                        <input type="radio" id="{{Question.quetionOptionBDescription}}"
+                            value="{{Question.questionOptionB}}" name="B">
+                        <label for="{{Question.quetionOptionBDescription}}">{{Question.quetionOptionBDescription}}</label>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="custom-choose mb-3">
+                        <input type="radio" id="{{Question.quetionOptionCDescription}}"
+                            value="{{Question.questionOptionC}}" name="C">
+                        <label for="{{Question.quetionOptionCDescription}}">{{Question.quetionOptionCDescription}}</label>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="custom-choose mb-3">
+                        <input type="radio" id="{{Question.quetionOptionDDescription}}"
+                            value="{{Question.questionOptionD}}" name="D">
+                        <label for="{{Question.quetionOptionDDescription}}">{{Question.quetionOptionDDescription}}</label>
+
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button class="appointment-btn" type="submit" value="Save">Submit</button>
+                </div>
+            </form>
+
+        </div>
+    </section>
 </body>
+
 </html>
 {% endblock content %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import QuestionTypeForm,CreateQuestionsForm, createImageQuestion, CreateOptionsforAQuestion
-from .models import Questions, Questionnaire, AlternativeQuestions,QuestionWiseResult
+from .forms import QuestionTypeForm,CreateQuestionsForm, createImageQuestion, CreateOptionsforAQuestion, createQuesitonsWithImage,createQuesitonsWithoutImage
+from .models import Questions, Questionnaire, AlternativeQuestions,QuestionWiseResult,questionsWithImages
 from demarcate.models import demarcateQuestion
 from django.http import HttpResponse
 import math
@@ -173,45 +173,60 @@ def createOptions(request):
 
 
 def showQuestions(request):
-    descQuesiton = Questions.objects.all()
+    # descQuesiton = Questions.objects.all()
+    descQuestion = questionsWithImages.objects.all()
     
-    context = {'QuestionText':descQuesiton}
+    context = {'QuestionText':descQuestion}
     return render(request, 'questions/student/quiz.html', context)
 
 def quizdetail(request, pk):
-    getOptions = AlternativeQuestions.objects.filter(questoes_questoes_id__description = pk)
-    rightAns = Questions.objects.get(description = pk)
-    getQuestion = pk
-    context = {'Question':getQuestion,'Options': getOptions}
+    # getOptions = AlternativeQuestions.objects.filter(questoes_questoes_id__description = pk)
+    # rightAns = Questions.objects.get(description = pk)
+    # getQuestion = pk
+
+    questionAndOptions = questionsWithImages.objects.get(idQuestion = pk)
+    context = {'Question':questionAndOptions}
     if request.method == "POST":
         selectedOptionA = request.POST.get('A')
         selectedOptionB = request.POST.get('B')
         selectedOptionC = request.POST.get('C')
         selectedOptionD = request.POST.get('D')
 
-        if selectedOptionA == rightAns.certain:
-            print('A Your Answer is correct')
-            saveFinalMarks = QuestionWiseResult(questionLink = rightAns, marksObtain = "5.0")
-            saveFinalMarks.save()
-            return HttpResponse('Your Answer is Correct')
-        elif selectedOptionB == rightAns.certain:
-            print('B Your Answer is correct')
-            saveFinalMarks = QuestionWiseResult(questionLink = rightAns, marksObtain = "5.0")
-            saveFinalMarks.save()
-            return HttpResponse('Your Answer is Correct')
-        elif selectedOptionC == rightAns.certain:
-            print('C Your Answer is correct')
-            saveFinalMarks = QuestionWiseResult(questionLink = rightAns, marksObtain = "5.0")
-            saveFinalMarks.save()
-            return HttpResponse('Your Answer is Correct')
-        elif selectedOptionD == rightAns.certain:
-            print('D Your Answer is correct')
-            saveFinalMarks = QuestionWiseResult(questionLink = rightAns, marksObtain = "5.0")
-            saveFinalMarks.save()
-            return HttpResponse('Your Answer is Correct')
+        if selectedOptionA == questionAndOptions.rightAnswerOfQuestion:
+          
+            return redirect('questions:congrats')
+        elif selectedOptionB == questionAndOptions.rightAnswerOfQuestion:
+           
+            return redirect('questions:congrats')
+        elif selectedOptionC == questionAndOptions.rightAnswerOfQuestion:
+           
+            return redirect('questions:congrats')
+        elif selectedOptionD == questionAndOptions.rightAnswerOfQuestion:
+         
+            return redirect('questions:congrats')
 
     return render(request, 'questions/student/questionwithoptions.html', context)
 
 def totalMarks(request, pk):
     context = {'subjectname': pk}
     return render(request, 'questions/teacher/totalMarks.html', context)
+
+def funImageQuestion(request):
+    form = createQuesitonsWithImage(request.POST or None)
+    userType = User.objects.get(iduser = request.user.iduser)
+    context = {'form':form, 'Type':str(userType.usertype)}
+
+    if form.is_valid():
+        form = createQuesitonsWithImage(request.POST,request.FILES)
+        form.save()
+    return render(request, 'questions/teacher/ImageQuestion.html', context)
+
+def funwithoutImageQuestion(request):
+    form = createQuesitonsWithoutImage(request.POST or None)
+    userType = User.objects.get(iduser = request.user.iduser)
+    context = {'form':form, 'Type':str(userType.usertype)}
+
+    if form.is_valid():
+        form = createQuesitonsWithoutImage(request.POST,request.FILES)
+        form.save()
+    return render(request, 'questions/teacher/withoutimageQuestion.html', context)

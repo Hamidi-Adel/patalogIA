@@ -3,38 +3,42 @@
 {% block content %}
 {% load static %}
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Question Page For Student</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question Page For Student</title>
 </head>
+
 <body>
-<section id="appointment" class="appointment section-bg">
+  <section id="appointment" class="appointment section-bg">
     <div class="container">
-    <div class="section-title">
+      <div class="section-title">
         <h2>Question Page For Student</h2>
-    </div>
-<div class="container">
-  <div class="row">
-    <div class="col-12 col-sm-12 col-lg-12">
-      <ul class="list-group mb-3">
-          {% for Question in QuestionText %}
-        <a style="text-align:center;margin: 10px 0;" href="{% url 'questions:quizdetail' Question.description %}" class="btn btn-outline-primary">
-            <h5 style="margin-top: 8px;">Question : {{Question.question}}</h5>
-        </a>
-          {% endfor %}
-      </ul>
-    </div>
-  </div>
-</div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-lg-12">
+            {% for Question in QuestionText %}
+            <ul class="list-group mb-3">
+              <a style="text-align:center;margin: 10px 0;" href="{% url 'questions:quizdetail' Question.idQuestion %}"
+                class="btn btn-outline-primary">
+                <h5 style="margin-top: 8px;">Question : {{Question.questionDescription}}</h5>
+              </a>
+            </ul>
+            {% endfor %}
+          </div>
         </div>
-</section>
-<!-- End Appointment Section -->
+      </div>
+    </div>
+  </section>
+  <!-- End Appointment Section -->
 </body>
 <style>
 
 </style>
+
 </html>
 
 {% endblock content %}

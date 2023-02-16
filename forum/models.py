@@ -13,7 +13,7 @@ class Topic(models.Model):
     description = models.CharField(max_length=100)
 
     def get_absolute_url(self):
-        return reverse('topic-detail', kwargs={'pk': self.pk})
+        return reverse('forum:topic-detail', kwargs={'pk': self.pk})
     
     def __str__(self):
         return self.title
@@ -31,7 +31,7 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('post-detail', kwargs={'pk': self.pk})
+        return reverse('forum:post-detail', kwargs={'pk': self.pk})
 
 class Comment(models.Model):
     """ Comments are replies to posts """
