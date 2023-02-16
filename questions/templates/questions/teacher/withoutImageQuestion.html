@@ -8,60 +8,59 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- RadioInputs CSS -->
-    <link href="{% static 'assets/css/radiobuttonsCSS.css' %}" rel="stylesheet">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-
-    <title>Question With Detial</title>
+    <title>Questions without Images</title>
 </head>
 
 <body>
-    <section id="appointment" class="appointment ">
+    <section id="appointment" class="appointment section-bg">
         <div class="container">
             <div class="section-title">
-                <h2>{{Question}}</h2>
+                <h2>Create No Image Question Here</h2>
             </div>
-            <form action="" method="post" class="php-email-form">
+            {% if user.is_authenticated %}
+            {% if Type == 'Student' %}
+            <div class="section-title">
+                <h2>Students are not Allowed to view this page</h2>
+            </div>
+            {% else %}
+            <form class="php-email-form" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 
-                <div class="row mb-3">
-                    <div class="custom-choose mb-3">
-                        <input type="radio" id="{{Question.quetionOptionADescription}}"
-                            value="{{Question.questionOptionA}}" name="A">
-                        <label for="{{Question.quetionOptionADescription}}">{{Question.quetionOptionADescription}}</label>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="custom-choose mb-3">
-                        <input type="radio" id="{{Question.quetionOptionBDescription}}"
-                            value="{{Question.questionOptionB}}" name="B">
-                        <label for="{{Question.quetionOptionBDescription}}">{{Question.quetionOptionBDescription}}</label>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="custom-choose mb-3">
-                        <input type="radio" id="{{Question.quetionOptionCDescription}}"
-                            value="{{Question.questionOptionC}}" name="C">
-                        <label for="{{Question.quetionOptionCDescription}}">{{Question.quetionOptionCDescription}}</label>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="custom-choose mb-3">
-                        <input type="radio" id="{{Question.quetionOptionDDescription}}"
-                            value="{{Question.questionOptionD}}" name="D">
-                        <label for="{{Question.quetionOptionDDescription}}">{{Question.quetionOptionDDescription}}</label>
 
-                    </div>
-                </div>
+{{ form.questionDescription}}
+{{ form.questionOptionA}}
+{{ form.quetionOptionADescription}}
+{{ form.questionOptionB}}
+{{ form.quetionOptionBDescription}}
+{{ form.questionOptionC}}
+{{ form.quetionOptionCDescription}}
+{{ form.questionOptionD}}
+{{ form.quetionOptionDDescription}}
+{{form.rightAnswerOfQuestion}}
 
                 <div class="text-center">
-                    <button class="appointment-btn" type="submit" value="Save">Submit</button>
+                    <button type="submit">Submit</button>
                 </div>
             </form>
-
+        </section>
+        {% endif %}
+        {% endif %}
         </div>
-    </section>
+
+    <!-- End Appointment Section -->
+    <script>
+        function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#myimage').attr('src', e.target.result);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+    </script>
 </body>
 
 </html>
